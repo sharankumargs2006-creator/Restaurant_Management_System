@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>Sri Anapurneshwri  Restaurant  </h1>
+
+<nav>
+   <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+    <a href="#" onclick="openMenu()">Menu</a>
+</nav>
+
+</header>
+
+<div class="home-container">
+
+<h2>Welcome to Our Restaurant</h2>
+
+<p>Enjoy Delicious Food</p>
+
+<a href="login.html">
+<button>Login</button>
+</a>
+
+</div>
+
+<footer>
+
+<p>© 2026  Anapurneshwri Management System</p>
+
+</footer>
+
+<script>
+
+function openMenu(){
+
+    if(localStorage.getItem("login") === "true"){
+
+        window.location.href = "menu.html";
+
+    }else{
+
+        alert("Please Login First");
+
+        window.location.href = "login.html";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

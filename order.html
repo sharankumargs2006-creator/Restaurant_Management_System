@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Food Order</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Sri Anapurneshwri Management System</h1>
+</header>
+
+<div class="order-container">
+
+<h2>Food Order</h2>
+
+<label>Customer Name</label>
+<input type="text" id="customer" required>
+
+<label>Food Name</label>
+
+<select id="food" onchange="calculateTotal()">
+<option value="select">Select Food</option>
+<option value="150">Veg Biryani - ₹150</option>
+<option value="80">Masala Dosa - ₹80</option>
+<option value="250">Paneer Pizza - ₹250</option>
+<option value="120">Burger - ₹120</option>
+<option value="40">Cold Drink - ₹40</option>
+
+</select>
+
+<label>Quantity</label>
+
+<input type="number"
+id="qty"
+value="1"
+min="1"
+onkeyup="calculateTotal()"
+onchange="calculateTotal()">
+
+<br><br>
+
+<h3>Total : ₹ <span id="total">150</span></h3>
+
+<button onclick="generateBill()">Generate Bill</button>
+
+</div>
+
+<script>
+
+function calculateTotal(){
+
+    let price = parseInt(document.getElementById("food").value);
+
+    let qty = parseInt(document.getElementById("qty").value);
+
+    let total = price * qty;
+
+    document.getElementById("total").innerHTML = total;
+
+}
+
+calculateTotal();
+
+function generateBill(){
+
+    let customer = document.getElementById("customer").value;
+
+    let food = document.getElementById("food");
+
+    let foodName = food.options[food.selectedIndex].text;
+
+    let price = food.value;
+
+    let qty = document.getElementById("qty").value;
+
+    let total = document.getElementById("total").innerHTML;
+
+    localStorage.setItem("customer", customer);
+    localStorage.setItem("food", foodName);
+    localStorage.setItem("price", price);
+    localStorage.setItem("qty", qty);
+    localStorage.setItem("total", total);
+
+    window.location.href = "bill.html";
+
+}
+
+</script>
+
+</body>
+</html>

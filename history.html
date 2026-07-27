@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1> Sri Anapurneshwri Management System</h1>
+</header>
+
+<div class="menu-container">
+
+<h2>Order History</h2>
+
+<table>
+
+<tr>
+    <th>Customer</th>
+    <th>Food</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+</tr>
+
+<tr>
+    <td id="customer"></td>
+    <td id="food"></td>
+    <td id="price"></td>
+    <td id="qty"></td>
+    <td id="total"></td>
+</tr>
+
+</table>
+
+<br>
+
+<a href="menu.html">
+<button>Back to Menu</button>
+</a>
+
+</div>
+
+<script>
+
+document.getElementById("customer").innerHTML =
+localStorage.getItem("customer");
+
+document.getElementById("food").innerHTML =
+localStorage.getItem("food");
+
+document.getElementById("price").innerHTML =
+"₹" + localStorage.getItem("price");
+
+document.getElementById("qty").innerHTML =
+localStorage.getItem("qty");
+
+document.getElementById("total").innerHTML =
+"₹" + localStorage.getItem("total");
+
+</script>
+
+</body>
+</html>

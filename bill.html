@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Bill</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1> Sri Anapurneshwri Management System</h1>
+</header>
+
+<div class="bill-container">
+
+<h2>Customer Bill</h2>
+
+<table>
+
+<tr>
+    <th>Customer Name</th>
+    <td id="customer"></td>
+</tr>
+
+<tr>
+    <th>Food</th>
+    <td id="food"></td>
+</tr>
+
+<tr>
+    <th>Price</th>
+    <td id="price"></td>
+</tr>
+
+<tr>
+    <th>Quantity</th>
+    <td id="qty"></td>
+</tr>
+
+<tr>
+    <th>Sub Total</th>
+    <td id="subtotal"></td>
+</tr>
+
+<tr>
+    <th>GST (5%)</th>
+    <td id="gst"></td>
+</tr>
+
+<tr>
+    <th>Grand Total</th>
+    <td id="grand"></td>
+</tr>
+
+</table>
+
+<br>
+
+<button onclick="window.print()">Print Bill</button>
+<br><br>
+
+<a href="history.html">
+<button>Order History</button>
+</a>
+
+<hr>
+
+<h2 style="text-align:center; color:#ff5722;">
+🍽 Thank You for Visiting Our Restaurant 🍽
+</h2>
+
+<p style="text-align:center; font-size:18px;">
+We truly appreciate your visit and support.<br>
+It was our pleasure to serve you.<br><br>
+
+We look forward to welcoming you again.<br>
+
+<b>Have a Great Day!</b><br><br>
+
+⭐⭐⭐⭐⭐<br>
+
+<b>Visit Again!</b>
+</p>
+</div>
+
+<script>
+
+window.onload = function(){
+
+let customer = localStorage.getItem("customer");
+
+let food = localStorage.getItem("food");
+
+let price = localStorage.getItem("price");
+
+let qty = localStorage.getItem("qty");
+
+let total = localStorage.getItem("total");
+
+let gst = total * 0.05;
+
+let grand = parseFloat(total) + parseFloat(gst);
+
+document.getElementById("customer").innerHTML = customer;
+
+document.getElementById("food").innerHTML = food;
+
+document.getElementById("price").innerHTML = "₹" + price;
+
+document.getElementById("qty").innerHTML = qty;
+
+document.getElementById("subtotal").innerHTML = "₹" + total;
+
+document.getElementById("gst").innerHTML = "₹" + gst.toFixed(2);
+
+document.getElementById("grand").innerHTML = "₹" + grand.toFixed(2);
+
+}
+</script>
+
+</body>
+</html>

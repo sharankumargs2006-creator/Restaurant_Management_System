@@ -68,13 +68,25 @@
 
 </div>
 
+```html
 <script>
 
+// First time page open ಆದರೆ old cart clear
+if(!sessionStorage.getItem("cartStarted")){
+
+    localStorage.removeItem("cart");
+    localStorage.removeItem("finalCart");
+    localStorage.removeItem("customerName");
+
+    sessionStorage.setItem("cartStarted", "true");
+}
+
+// Add to Cart
 function addToCart(name, price){
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // same item already exists?
+    // Same item already exists?
     let existing = cart.find(item => item.name === name);
 
     if(existing){
@@ -95,11 +107,15 @@ function addToCart(name, price){
     alert(name + " added to cart");
 }
 
+// Open Cart
 function openCart(){
+
     window.location.href = "cart.html";
 }
 
 </script>
+```
+
 
 </body>
 </html>

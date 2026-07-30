@@ -250,3 +250,10 @@ footer{
 .home-container p{
     color:white;
 }
+.restaurant-img{
+    width:300px;
+    max-width:90%;
+    display:block;
+    margin:20px auto;
+    border-radius:12px;
+}

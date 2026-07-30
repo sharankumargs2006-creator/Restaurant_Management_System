@@ -68,41 +68,23 @@
         <p>© 2026 Sri Anapurneshwari Restaurant. All Rights Reserved.</p>
     </footer>
 
-    <script>
+   <script>
 
-        function isLoggedIn() {
-            return localStorage.getItem("login") === "true";
-        }
+function orderNow(){
 
-        function openMenu() {
+    if(localStorage.getItem("login") === "true"){
 
-            if (isLoggedIn()) {
+        window.location.href = "menu.html";
 
-                window.location.href = "menu.html";
+    }else{
 
-            } else {
+        alert("Please Login First");
+        window.location.href = "login.html";
+    }
 
-                alert("Please Login First");
-                window.location.href = "login.html";
-            }
+}
 
-        }
-
-        function orderNow() {
-
-            if (isLoggedIn()) {
-
-                window.location.href = "menu.html";
-
-            } else {
-
-                alert("Please Login First");
-                window.location.href = "login.html";
-            }
-
-        }
-
-    </script>
+</script>
 
 </body>
 

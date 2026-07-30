@@ -110,18 +110,111 @@ nav a:hover{
    MENU PAGE
 ========================== */
 
+/* ==========================
+   MENU PAGE - PROFESSIONAL DESIGN
+========================== */
+
 .menu-container{
-    width:85%;
-    margin:40px auto;
-    background:rgba(255,255,255,0.95);
-    color:black;
-    padding:25px;
-    border-radius:12px;
+    width:90%;
+    max-width:1200px;
+    margin:50px auto;
+    padding:30px;
+    border-radius:20px;
+
+    /* White background remove */
+    background:rgba(0,0,0,0.55);
+
+    /* Glass effect */
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    color:white;
 }
 
 .menu-container h2{
-    color:#ff5722;
     text-align:center;
+    color:#ffb703;
+    margin-bottom:25px;
+    font-size:36px;
+    letter-spacing:1px;
+}
+
+/* ==========================
+   TABLE DESIGN
+========================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:15px;
+    background:rgba(255,255,255,0.08);
+}
+
+th{
+    background:#ff5a1f;
+    color:white;
+    padding:16px;
+    font-size:18px;
+}
+
+td{
+    padding:18px;
+    text-align:center;
+    color:white;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+tr:hover{
+    background:rgba(255,255,255,0.08);
+}
+
+/* ==========================
+   ORDER BUTTON
+========================== */
+
+table button{
+    width:140px;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#ff5a1f;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+table button:hover{
+    background:#ff7b42;
+    transform:translateY(-2px);
+}
+
+/* ==========================
+   PAGE BUTTONS
+========================== */
+
+.menu-container > button,
+.menu-container a button{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    font-size:16px;
+    font-weight:bold;
+    border-radius:10px;
+    background:#ff5a1f;
+    border:none;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.menu-container > button:hover,
+.menu-container a button:hover{
+    background:#ff7b42;
+    transform:translateY(-2px);
 }
 
 /* ==========================

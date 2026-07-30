@@ -77,7 +77,9 @@ function openCart(){
     <button onclick="addToCart('Cold Drinks',40)">Add to Cart</button>
 </tr>
     </table>
+<br>
 
+<button onclick="openCart()">🛒 View Cart</button>
 </div>
 
 <script>
@@ -91,13 +93,38 @@ function orderFood(name, price){
 }
 
 </script>
-<script>
+    <tr>
+        <td><img src="cold-drink.jpg" class="food-img"></td>
+        <td>Cold Drink</td>
+        <td>₹40</td>
+        <td><button onclick="addToCart('Cold Drink',40)">Add to Cart</button></td>
+    </tr>
+
+</table>
+
+<br>
+
+<button onclick="openCart()">🛒 View Cart</button>
+
+</div>
 
 <script>
-function logout(){
-    localStorage.removeItem("login");
-    window.location.href = "index.html";
+
+function addToCart(name, price){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({ name:name, price:price });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart");
 }
+
+function openCart(){
+    window.location.href = "cart.html";
+}
+
 </script>
 
 </body>

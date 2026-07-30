@@ -292,7 +292,46 @@ select{
 input::placeholder{
     color:#ddd;
 }
+/* ==========================
+   PROFESSIONAL SELECT DROPDOWN
+========================== */
 
+select{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    margin-bottom:15px;
+
+    background:rgba(0,0,0,0.45);   /* dark glass */
+    color:white;
+
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:8px;
+
+    font-size:16px;
+    font-weight:500;
+
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+
+    outline:none;
+    appearance:none;
+}
+
+/* dropdown options */
+
+select option{
+    background:#1f1f1f;
+    color:white;
+    padding:10px;
+}
+
+/* focus effect */
+
+select:focus{
+    border-color:#ffb703;
+    box-shadow:0 0 10px rgba(255,183,3,0.5);
+}
 /* ==========================
    BUTTON
 ========================== */

@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +13,17 @@
 
     <h2>🛒 Your Cart</h2>
 
+    <label>Customer Name</label>
+    <input type="text" id="customerName" placeholder="Enter Customer Name" required>
+
     <table id="cartTable">
+
         <tr>
             <th>Food Item</th>
             <th>Price</th>
+            <th>Quantity</th>
         </tr>
+
     </table>
 
     <h3 id="totalAmount">Total: ₹0</h3>
@@ -27,21 +34,72 @@
 
 <script>
 
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let table = document.getElementById("cartTable");
+let total = 0;
+
+cart.forEach((item, index) => {
+
+    let row = table.insertRow();
+
+    row.insertCell(0).innerText = item.name;
+    row.insertCell(1).innerText = "₹" + item.price;
+
+    let qtyCell = row.insertCell(2);
+
+    qtyCell.innerHTML =
+        `<input type="number" min="1" value="1" id="qty${index}" style="width:70px;" onchange="updateTotal()">`;
+
+    total += item.price;
+});
+
+document.getElementById("totalAmount").innerText = "Total: ₹" + total;
+
+function updateTotal(){
+
+    let newTotal = 0;
+
+    cart.forEach((item, index) => {
+
+        let qty = parseInt(document.getElementById("qty" + index).value);
+
+        newTotal += item.price * qty;
+    });
+
+    document.getElementById("totalAmount").innerText = "Total: ₹" + newTotal;
+}
+
 function checkout(){
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let name = document.getElementById("customerName").value;
 
-    if(cart.length === 0){
-
-        alert("Cart is Empty");
+    if(name === ""){
+        alert("Please enter customer name");
         return;
     }
+
+    let finalCart = [];
+
+    cart.forEach((item, index) => {
+
+        let qty = parseInt(document.getElementById("qty" + index).value);
+
+        finalCart.push({
+            name: item.name,
+            price: item.price,
+            quantity: qty
+        });
+    });
+
+    localStorage.setItem("customerName", name);
+    localStorage.setItem("finalCart", JSON.stringify(finalCart));
 
     window.location.href = "bill.html";
 }
 
 </script>
-```
 
 </body>
 </html>
+```

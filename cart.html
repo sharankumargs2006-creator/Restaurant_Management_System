@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="bill-container">
+<div class="bill-container" id="cartArea">
 
     <h2>🛒 Your Cart</h2>
 
@@ -21,82 +21,131 @@
         <tr>
             <th>Food Item</th>
             <th>Price</th>
-            <th>Quantity</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Action</th>
         </tr>
 
     </table>
 
-    <h3 id="totalAmount">Total: ₹0</h3>
+    <h3 id="totalAmount">Grand Total: ₹0</h3>
 
     <button onclick="checkout()">Proceed to Checkout</button>
+    <br><br>
+    <button onclick="clearCart()">🗑️ Clear Cart</button>
 
 </div>
 
 <script>
 
+// Load cart
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let table = document.getElementById("cartTable");
-let total = 0;
 
-cart.forEach((item, index) => {
+function renderCart(){
 
-    let row = table.insertRow();
+    // Remove old rows except header
+    table.innerHTML = `
+        <tr>
+            <th>Food Item</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    `;
 
-    row.insertCell(0).innerText = item.name;
-    row.insertCell(1).innerText = "₹" + item.price;
-
-    let qtyCell = row.insertCell(2);
-
-    qtyCell.innerHTML =
-        `<input type="number" min="1" value="1" id="qty${index}" style="width:70px;" onchange="updateTotal()">`;
-
-    total += item.price;
-});
-
-document.getElementById("totalAmount").innerText = "Total: ₹" + total;
-
-function updateTotal(){
-
-    let newTotal = 0;
+    let grandTotal = 0;
 
     cart.forEach((item, index) => {
 
-        let qty = parseInt(document.getElementById("qty" + index).value);
+        let itemTotal = item.price * item.quantity;
 
-        newTotal += item.price * qty;
+        let row = table.insertRow();
+
+        row.insertCell(0).innerText = item.name;
+        row.insertCell(1).innerText = "₹" + item.price;
+
+        let qtyCell = row.insertCell(2);
+
+        qtyCell.innerHTML =
+            `<input type="number" min="1" value="${item.quantity}" id="qty${index}" style="width:70px;" onchange="updateQuantity(${index})">`;
+
+        row.insertCell(3).innerText = "₹" + itemTotal;
+
+        row.insertCell(4).innerHTML =
+            `<button onclick="removeItem(${index})">Remove</button>`;
+
+        grandTotal += itemTotal;
     });
 
-    document.getElementById("totalAmount").innerText = "Total: ₹" + newTotal;
+    document.getElementById("totalAmount").innerText =
+        "Grand Total: ₹" + grandTotal;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// Update quantity
+function updateQuantity(index){
+
+    let qty = parseInt(document.getElementById("qty" + index).value);
+
+    if(qty < 1) qty = 1;
+
+    cart[index].quantity = qty;
+
+    renderCart();
+}
+
+// Remove single item
+function removeItem(index){
+
+    cart.splice(index, 1);
+
+    renderCart();
+}
+
+// Clear cart
+function clearCart(){
+
+    if(confirm("Clear all cart items?")){
+
+        cart = [];
+
+        localStorage.removeItem("cart");
+
+        renderCart();
+    }
+}
+
+// Checkout
 function checkout(){
 
-    let name = document.getElementById("customerName").value;
+    let name = document.getElementById("customerName").value.trim();
 
     if(name === ""){
+
         alert("Please enter customer name");
+
         return;
     }
 
-    let finalCart = [];
+    if(cart.length === 0){
 
-    cart.forEach((item, index) => {
+        alert("Cart is empty");
 
-        let qty = parseInt(document.getElementById("qty" + index).value);
-
-        finalCart.push({
-            name: item.name,
-            price: item.price,
-            quantity: qty
-        });
-    });
+        return;
+    }
 
     localStorage.setItem("customerName", name);
-    localStorage.setItem("finalCart", JSON.stringify(finalCart));
+    localStorage.setItem("finalCart", JSON.stringify(cart));
 
     window.location.href = "bill.html";
 }
+
+// Initial render
+renderCart();
 
 </script>
 

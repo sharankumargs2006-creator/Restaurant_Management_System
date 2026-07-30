@@ -1,63 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Management System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+    <header>
 
-<h1>Sri Anapurneshwri  Restaurant  </h1>
+        <h1>Sri Anapurneshwari Restaurant</h1>
 
-<nav>
-   <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="#" onclick="openMenu()">Menu</a>
-</nav>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="#" onclick="openMenu()">Menu</a>
+        </nav>
 
-</header>
+    </header>
 
-<div class="home-container">
+    <div class="home-container">
 
-<h2>Welcome to Our Restaurant</h2>
+        <!-- Restaurant Image -->
+        <img src="restaurant.jpg" alt="Restaurant Image" class="restaurant-img">
 
-<p>Enjoy Delicious Food</p>
+        <h2>Welcome to Our Restaurant</h2>
 
-<a href="login.html">
-<button>Login</button>
-</a>
+        <p>Enjoy Delicious Food</p>
 
-</div>
+        <a href="login.html">
+            <button>Login</button>
+        </a>
 
-<footer>
+    </div>
 
-<p>© 2026  Anapurneshwri Management System</p>
+    <footer>
+        <p>© 2026 Anapurneshwari Restaurant Management System</p>
+    </footer>
 
-</footer>
+    <script>
 
-<script>
+        function openMenu() {
 
-function openMenu(){
+            if (localStorage.getItem("login") === "true") {
 
-    if(localStorage.getItem("login") === "true"){
+                window.location.href = "menu.html";
 
-        window.location.href = "menu.html";
+            } else {
 
-    }else{
+                alert("Please Login First");
 
-        alert("Please Login First");
+                window.location.href = "login.html";
+            }
 
-        window.location.href = "login.html";
+        }
 
-    }
-
-}
-
-</script>
+    </script>
 
 </body>
+
 </html>

@@ -15,20 +15,25 @@
 
 <h2>Food Order</h2>
 
-<label>Customer Name</label>
-<input type="text" id="customer" required>
-
+```html
 <label>Food Name</label>
-
-<select id="food" onchange="calculateTotal()">
-<option value="" selected disabled>Select Food</option>
-<option value="150">Veg Biryani - ₹150</option>
-<option value="80">Masala Dosa - ₹80</option>
-<option value="250">Paneer Pizza - ₹250</option>
-<option value="120">Burger - ₹120</option>
-<option value="40">Cold Drink - ₹40</option>
-
+<select id="food">
+    <option value="150">Veg Biryani - ₹150</option>
+    <option value="80">Masala Dosa - ₹80</option>
+    <option value="250">Paneer Pizza - ₹250</option>
+    <option value="120">Burger - ₹120</option>
+    <option value="40">Cold Drink - ₹40</option>
 </select>
+
+<label>Quantity</label>
+<input type="number" id="qty" min="1" value="1">
+
+<button onclick="calculateBill()">Calculate Bill</button>
+
+<div id="result" style="margin-top:20px; color:white;"></div>
+
+<script src="script.js"></script>
+
 
 <label>Quantity</label>
 

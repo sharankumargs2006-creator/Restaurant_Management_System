@@ -26,9 +26,10 @@
         </div>
 
         <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-</nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
+
     </header>
 
     <main>
@@ -51,11 +52,15 @@
 
             <div class="hero-buttons">
 
-    <button class="primary-btn" onclick="orderNow()" aria-label="Order food now">
-        Order Now
-    </button>
+                <!-- Always go to Login Page first -->
+                <a href="login.html">
+                    <button class="primary-btn" aria-label="Order food now">
+                        Order Now
+                    </button>
+                </a>
 
-</div>
+            </div>
+
             <p class="delivery-text">
                 🚚 Fast Delivery • Hygienic Kitchen • Fresh Ingredients
             </p>
@@ -67,24 +72,6 @@
     <footer>
         <p>© 2026 Sri Anapurneshwari Restaurant. All Rights Reserved.</p>
     </footer>
-
-   <script>
-
-function orderNow(){
-
-    if(localStorage.getItem("login") === "true"){
-
-        window.location.href = "menu.html";
-
-    }else{
-
-        alert("Please Login First");
-        window.location.href = "login.html";
-    }
-
-}
-
-</script>
 
 </body>
 

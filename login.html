@@ -28,13 +28,14 @@
 
 function login(){
 
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    // Demo login
-    if(username === "sharankumar shigganvi" && password === "guddappa@123"){
+    const savedUser = JSON.parse(localStorage.getItem("user"));
 
-        localStorage.setItem("login","true");
+    if(savedUser && username === savedUser.email && password === savedUser.password){
+
+        localStorage.setItem("login", "true");
 
         alert("Login Successful");
 
@@ -42,7 +43,7 @@ function login(){
 
     }else{
 
-        alert("Invalid Username or Password");
+        alert("Invalid Email or Password");
     }
 
 }

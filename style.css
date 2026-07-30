@@ -639,5 +639,41 @@ footer{
 .food-img:hover{
     transform:scale(1.08);
 }
+```css
+/* Print only bill area */
+
+@media print {
+
+    body{
+        background:white;
+    }
+
+    header,
+    footer,
+    button{
+        display:none;
+    }
+
+    #billArea{
+        box-shadow:none;
+        border:none;
+        width:100%;
+        margin:0;
+        padding:20px;
+        color:black;
+        background:white;
+    }
+
+    #billArea table{
+        border:1px solid black;
+    }
+
+    #billArea th,
+    #billArea td{
+        border:1px solid black;
+        color:black;
+    }
+}
 ```
+
 

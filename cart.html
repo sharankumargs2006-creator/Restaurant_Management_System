@@ -27,36 +27,21 @@
 
 <script>
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-let table = document.getElementById("cartTable");
-let total = 0;
-
-cart.forEach(item => {
-
-    let row = table.insertRow();
-
-    row.insertCell(0).innerText = item.name;
-    row.insertCell(1).innerText = "₹" + item.price;
-
-    total += item.price;
-});
-
-document.getElementById("totalAmount").innerText = "Total: ₹" + total;
-
 function checkout(){
 
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
     if(cart.length === 0){
+
         alert("Cart is Empty");
         return;
     }
-
-    localStorage.setItem("totalBill", total);
 
     window.location.href = "bill.html";
 }
 
 </script>
+```
 
 </body>
 </html>

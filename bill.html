@@ -15,7 +15,10 @@
 
     <p><strong>Restaurant:</strong> Sri Anapurneshwari Restaurant</p>
 
-    <p><strong>Customer Name:</strong> <span id="custName"></span></p>
+    <!-- Customer Name Show Here -->
+    <p><strong>Customer Name:</strong>
+        <span id="custName"></span>
+    </p>
 
     <hr>
 
@@ -44,10 +47,16 @@
 
 <script>
 
-let customerName = localStorage.getItem("customerName") || "Guest";
+// Customer Name
+let customerName = localStorage.getItem("customerName");
 
-document.getElementById("custName").innerText = customerName;
+if(customerName){
+    document.getElementById("custName").innerText = customerName;
+}else{
+    document.getElementById("custName").innerText = "Guest";
+}
 
+// Cart Data
 let cart = JSON.parse(localStorage.getItem("finalCart")) || [];
 
 let table = document.getElementById("billTable");
@@ -71,10 +80,12 @@ cart.forEach(item => {
 document.getElementById("totalBill").innerText =
     "Grand Total: ₹" + grandTotal;
 
+// Back Home
 function goHome(){
 
     localStorage.removeItem("cart");
     localStorage.removeItem("finalCart");
+    localStorage.removeItem("customerName");
 
     window.location.href = "index.html";
 }

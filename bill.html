@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,11 +49,8 @@
 // Customer Name
 let customerName = localStorage.getItem("customerName");
 
-if(customerName){
-    document.getElementById("custName").innerText = customerName;
-}else{
-    document.getElementById("custName").innerText = "Guest";
-}
+document.getElementById("custName").innerText =
+    customerName || "Guest";
 
 // Cart Data
 let cart = JSON.parse(localStorage.getItem("finalCart")) || [];
@@ -63,20 +59,36 @@ let table = document.getElementById("billTable");
 
 let grandTotal = 0;
 
+// Remove old rows except header
+table.innerHTML = `
+    <tr>
+        <th>Food Item</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+`;
+
 cart.forEach(item => {
 
-    let itemTotal = item.price * item.quantity;
+    // If quantity missing, set 1
+    let qty = item.quantity ? parseInt(item.quantity) : 1;
+
+    let price = parseFloat(item.price);
+
+    let itemTotal = qty * price;
 
     let row = table.insertRow();
 
     row.insertCell(0).innerText = item.name;
-    row.insertCell(1).innerText = item.quantity;
-    row.insertCell(2).innerText = "₹" + item.price;
+    row.insertCell(1).innerText = qty;
+    row.insertCell(2).innerText = "₹" + price;
     row.insertCell(3).innerText = "₹" + itemTotal;
 
     grandTotal += itemTotal;
 });
 
+// Show Grand Total
 document.getElementById("totalBill").innerText =
     "Grand Total: ₹" + grandTotal;
 

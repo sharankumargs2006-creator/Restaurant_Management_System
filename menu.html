@@ -75,10 +75,21 @@ function addToCart(name, price){
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    cart.push({
-        name: name,
-        price: price
-    });
+    // Check item already exists
+    let existing = cart.find(item => item.name === name);
+
+    if(existing){
+
+        existing.quantity += 1;
+
+    }else{
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -90,7 +101,6 @@ function openCart(){
 }
 
 </script>
-
 </body>
 </html>
-```
+

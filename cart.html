@@ -15,17 +15,17 @@
     <label>Customer Name</label>
     <input type="text" id="customerName" placeholder="Enter Customer Name">
 
-    <table id="cartTable">
+  <table id="cartTable">
 
-        <tr>
-            <th>Food Item</th>
-            <th>Price</th>
-            <th>Qty</th>
-            <th>Total</th>
-        </tr>
+    <tr>
+        <th>Food Item</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th>Action</th>   
+    </tr>
 
-    </table>
-
+</table>
     <h3 id="totalAmount">Grand Total: ₹0</h3>
 
     <button onclick="checkout()">Proceed to Checkout</button>
@@ -50,6 +50,7 @@ function clearCart(){
 
 </div>
 
+```html
 <script>
 
 // Load cart
@@ -57,6 +58,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let table = document.getElementById("cartTable");
 
+// Show cart items
 function renderCart(){
 
     table.innerHTML = `
@@ -65,6 +67,7 @@ function renderCart(){
             <th>Price</th>
             <th>Qty</th>
             <th>Total</th>
+            <th>Action</th>
         </tr>
     `;
 
@@ -79,12 +82,20 @@ function renderCart(){
         row.insertCell(0).innerText = item.name;
         row.insertCell(1).innerText = "₹" + item.price;
 
+        // Quantity input
         let qtyCell = row.insertCell(2);
 
         qtyCell.innerHTML =
-            `<input type="number" min="1" value="${item.quantity}" id="qty${index}" style="width:60px;" onchange="updateQuantity(${index})">`;
+            `<input type="number" min="1" value="${item.quantity}"
+             id="qty${index}" style="width:60px;"
+             onchange="updateQuantity(${index})">`;
 
+        // Item total
         row.insertCell(3).innerText = "₹" + itemTotal;
+
+        // Remove button
+        row.insertCell(4).innerHTML =
+            `<button onclick="removeItem(${index})">Remove</button>`;
 
         grandTotal += itemTotal;
     });
@@ -95,6 +106,7 @@ function renderCart(){
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// Update quantity
 function updateQuantity(index){
 
     let qty = parseInt(document.getElementById("qty" + index).value);
@@ -108,6 +120,17 @@ function updateQuantity(index){
     renderCart();
 }
 
+// Remove item
+function removeItem(index){
+
+    cart.splice(index, 1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    renderCart();
+}
+
+// Checkout
 function checkout(){
 
     let name = document.getElementById("customerName").value.trim();
@@ -126,13 +149,10 @@ function checkout(){
         return;
     }
 
-    // Save customer name
     localStorage.setItem("customerName", name);
 
-    // Save final cart
     localStorage.setItem("finalCart", JSON.stringify(cart));
 
-    // Open bill page
     window.location.href = "bill.html";
 }
 
@@ -141,6 +161,3 @@ renderCart();
 
 </script>
 
-</body>
-</html>
-```

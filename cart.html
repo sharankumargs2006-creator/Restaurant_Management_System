@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bill-container">
+
+    <h2>🛒 Your Cart</h2>
+
+    <table id="cartTable">
+        <tr>
+            <th>Food Item</th>
+            <th>Price</th>
+        </tr>
+    </table>
+
+    <h3 id="totalAmount">Total: ₹0</h3>
+
+    <button onclick="checkout()">Proceed to Checkout</button>
+
+</div>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let table = document.getElementById("cartTable");
+let total = 0;
+
+cart.forEach(item => {
+
+    let row = table.insertRow();
+
+    row.insertCell(0).innerText = item.name;
+    row.insertCell(1).innerText = "₹" + item.price;
+
+    total += item.price;
+});
+
+document.getElementById("totalAmount").innerText = "Total: ₹" + total;
+
+function checkout(){
+
+    if(cart.length === 0){
+        alert("Cart is Empty");
+        return;
+    }
+
+    localStorage.setItem("totalBill", total);
+
+    window.location.href = "bill.html";
+}
+
+</script>
+
+</body>
+</html>

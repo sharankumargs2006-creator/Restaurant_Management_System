@@ -9,12 +9,12 @@
 </head>
 <body>
 
-<div class="bill-container" id="cartArea">
+<div class="bill-container">
 
     <h2>🛒 Your Cart</h2>
 
     <label>Customer Name</label>
-    <input type="text" id="customerName" placeholder="Enter Customer Name" required>
+    <input type="text" id="customerName" placeholder="Enter Customer Name">
 
     <table id="cartTable">
 
@@ -23,7 +23,6 @@
             <th>Price</th>
             <th>Qty</th>
             <th>Total</th>
-            <th>Action</th>
         </tr>
 
     </table>
@@ -31,8 +30,6 @@
     <h3 id="totalAmount">Grand Total: ₹0</h3>
 
     <button onclick="checkout()">Proceed to Checkout</button>
-    <br><br>
-    <button onclick="clearCart()">🗑️ Clear Cart</button>
 
 </div>
 
@@ -45,14 +42,12 @@ let table = document.getElementById("cartTable");
 
 function renderCart(){
 
-    // Remove old rows except header
     table.innerHTML = `
         <tr>
             <th>Food Item</th>
             <th>Price</th>
             <th>Qty</th>
             <th>Total</th>
-            <th>Action</th>
         </tr>
     `;
 
@@ -70,12 +65,9 @@ function renderCart(){
         let qtyCell = row.insertCell(2);
 
         qtyCell.innerHTML =
-            `<input type="number" min="1" value="${item.quantity}" id="qty${index}" style="width:70px;" onchange="updateQuantity(${index})">`;
+            `<input type="number" min="1" value="${item.quantity}" id="qty${index}" style="width:60px;" onchange="updateQuantity(${index})">`;
 
         row.insertCell(3).innerText = "₹" + itemTotal;
-
-        row.insertCell(4).innerHTML =
-            `<button onclick="removeItem(${index})">Remove</button>`;
 
         grandTotal += itemTotal;
     });
@@ -86,40 +78,19 @@ function renderCart(){
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Update quantity
 function updateQuantity(index){
 
     let qty = parseInt(document.getElementById("qty" + index).value);
 
-    if(qty < 1) qty = 1;
+    if(qty < 1){
+        qty = 1;
+    }
 
     cart[index].quantity = qty;
 
     renderCart();
 }
 
-// Remove single item
-function removeItem(index){
-
-    cart.splice(index, 1);
-
-    renderCart();
-}
-
-// Clear cart
-function clearCart(){
-
-    if(confirm("Clear all cart items?")){
-
-        cart = [];
-
-        localStorage.removeItem("cart");
-
-        renderCart();
-    }
-}
-
-// Checkout
 function checkout(){
 
     let name = document.getElementById("customerName").value.trim();
@@ -138,13 +109,17 @@ function checkout(){
         return;
     }
 
+    // Save customer name
     localStorage.setItem("customerName", name);
+
+    // Save final cart
     localStorage.setItem("finalCart", JSON.stringify(cart));
 
+    // Open bill page
     window.location.href = "bill.html";
 }
 
-// Initial render
+// First load
 renderCart();
 
 </script>

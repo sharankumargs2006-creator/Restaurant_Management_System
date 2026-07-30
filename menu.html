@@ -69,13 +69,13 @@
 
 </div>
 
+```html
 <script>
 
 function addToCart(name, price){
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Check item already exists
     let existing = cart.find(item => item.name === name);
 
     if(existing){
@@ -101,6 +101,8 @@ function openCart(){
 }
 
 </script>
+
+
 </body>
 </html>
 

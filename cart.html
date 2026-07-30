@@ -30,6 +30,24 @@
 
     <button onclick="checkout()">Proceed to Checkout</button>
 
+<br><br>
+
+<button onclick="clearCart()">🗑️ Clear Cart</button>
+
+<script>
+
+function clearCart(){
+
+    localStorage.removeItem("cart");
+    localStorage.removeItem("finalCart");
+
+    alert("Cart Cleared Successfully");
+
+    window.location.reload();
+}
+
+</script>
+
 </div>
 
 <script>

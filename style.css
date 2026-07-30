@@ -625,6 +625,7 @@ footer{
 }
 /* Food Images */
 
+```css
 .food-img{
     width:100px;
     height:80px;
@@ -638,4 +639,5 @@ footer{
 .food-img:hover{
     transform:scale(1.08);
 }
+```
 

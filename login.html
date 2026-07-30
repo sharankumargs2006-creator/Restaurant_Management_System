@@ -25,27 +25,28 @@
 </div>
 
 <script>
+
 function login(){
 
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
 
+    // Demo login
     if(username === "sharankumar shigganvi" && password === "guddappa@123"){
 
-        // Login Success
         localStorage.setItem("login","true");
 
         alert("Login Successful");
 
-        window.location.href="menu.html";
+        window.location.href = "menu.html";
 
     }else{
 
         alert("Invalid Username or Password");
-
     }
 
 }
+
 </script>
 </body>
 </html>

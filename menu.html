@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,67 @@
     <title>Food Menu</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
+<header>
+    <h1>Sri Anapurneshwari Management System</h1>
+</header>
+
+<div class="menu-container">
+
+    <h2>Food Menu</h2>
+
+    <table>
+
+        <tr>
+            <th>Image</th>
+            <th>Food Name</th>
+            <th>Price</th>
+            <th>Order</th>
+        </tr>
+
+        <tr>
+            <td><img src="veg-biryani.jpg" class="food-img" alt="Veg Biryani"></td>
+            <td>Veg Biryani</td>
+            <td>₹150</td>
+            <td><button onclick="addToCart('Veg Biryani',150)">Add to Cart</button></td>
+        </tr>
+
+        <tr>
+            <td><img src="masala-dosa.jpg" class="food-img" alt="Masala Dosa"></td>
+            <td>Masala Dosa</td>
+            <td>₹80</td>
+            <td><button onclick="addToCart('Masala Dosa',80)">Add to Cart</button></td>
+        </tr>
+
+        <tr>
+            <td><img src="paneer-pizza.jpg" class="food-img" alt="Paneer Pizza"></td>
+            <td>Paneer Pizza</td>
+            <td>₹250</td>
+            <td><button onclick="addToCart('Paneer Pizza',250)">Add to Cart</button></td>
+        </tr>
+
+        <tr>
+            <td><img src="burger.jpg" class="food-img" alt="Burger"></td>
+            <td>Burger</td>
+            <td>₹120</td>
+            <td><button onclick="addToCart('Burger',120)">Add to Cart</button></td>
+        </tr>
+
+        <tr>
+            <td><img src="cold-drink.jpg" class="food-img" alt="Cold Drink"></td>
+            <td>Cold Drink</td>
+            <td>₹40</td>
+            <td><button onclick="addToCart('Cold Drink',40)">Add to Cart</button></td>
+        </tr>
+
+    </table>
+
+    <br>
+
+    <button onclick="openCart()">🛒 View Cart</button>
+
+</div>
 
 <script>
 
@@ -31,101 +91,6 @@ function openCart(){
 
 </script>
 
-<header>
-    <h1> Sri Anapurneshwri Management System</h1>
-</header>
-
-<div class="menu-container">
-
-    <h2>Food Menu</h2>
-
-    <table>
-      
-
-  <tr>
-    <td><img src="veg-biryani.jpg" class="food-img"></td>
-    <td>Veg Biryani</td>
-    <td>₹150</td>
-<button onclick="addToCart('Veg Biryani',150)">Add to Cart</button>
-</tr>
-
-<tr>
-    <td><img src="masala-dosa.jpg" class="food-img"></td>
-    <td>Masala Dosa</td>
-    <td>₹80</td>
-<button onclick="addToCart('Masal Dosa',80)">Add to Cart</button>
-</tr>
-
-<tr>
-    <td><img src="paneer-pizza.jpg" class="food-img"></td>
-    <td>Paneer Pizza</td>
-    <td>₹250</td>
-    <button onclick="addToCart('Paneer pizza',250)">Add to Cart</button>
-</tr>
-
-<tr>
-    <td><img src="burger.jpg" class="food-img"></td>
-    <td>Burger</td>
-    <td>₹120</td>
-<button onclick="addToCart('Burger',120)">Add to Cart</button>
-</tr>
-
-<tr>
-    <td><img src="cold-drink.jpg" class="food-img"></td>
-    <td>Cold Drink</td>
-    <td>₹40</td>
-    <button onclick="addToCart('Cold Drinks',40)">Add to Cart</button>
-</tr>
-    </table>
-<br>
-
-<button onclick="openCart()">🛒 View Cart</button>
-</div>
-
-<script>
-
-function orderFood(name, price){
-
-    localStorage.setItem("foodName", name);
-    localStorage.setItem("foodPrice", price);
-
-    window.location.href = "order.html";
-}
-
-</script>
-    <tr>
-        <td><img src="cold-drink.jpg" class="food-img"></td>
-        <td>Cold Drink</td>
-        <td>₹40</td>
-        <td><button onclick="addToCart('Cold Drink',40)">Add to Cart</button></td>
-    </tr>
-
-</table>
-
-<br>
-
-<button onclick="openCart()">🛒 View Cart</button>
-
-</div>
-
-<script>
-
-function addToCart(name, price){
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    cart.push({ name:name, price:price });
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    alert(name + " added to cart");
-}
-
-function openCart(){
-    window.location.href = "cart.html";
-}
-
-</script>
-
 </body>
 </html>
+```

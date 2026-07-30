@@ -366,3 +366,14 @@ footer{
         padding:10px;
     }
 }
+.logo{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid #ffb703;
+    box-shadow:0 0 20px rgba(255,183,3,0.7);
+    background:white;
+    padding:5px;
+    margin-bottom:12px;
+}

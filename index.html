@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Management System</title>
+
+    <title>Sri Anapurneshwari Restaurant | Restaurant Management System</title>
+
+    <meta name="description"
+          content="Sri Anapurneshwari Restaurant - Restaurant Management System with online menu, login and ordering facility.">
 
     <link rel="stylesheet" href="style.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo.png?v=2">
+    <link rel="icon" type="image/png" href="logo.png?v=3">
 </head>
 
 <body>
@@ -17,7 +21,7 @@
     <header>
 
         <div class="logo-box">
-            <img src="logo.png" alt="Restaurant Logo" class="logo">
+            <img src="logo.png" alt="Sri Anapurneshwari Restaurant Logo" class="logo">
             <h1>Sri Anapurneshwari Restaurant</h1>
         </div>
 
@@ -29,64 +33,84 @@
 
     </header>
 
-    <!-- PROFESSIONAL HOME SECTION -->
-    <div class="home-container">
+    <main>
 
-        <span class="offer-badge">🔥 20% OFF Today</span>
+        <section class="home-container">
 
-        <h2>Welcome to Our Restaurant</h2>
+            <span class="offer-badge">🔥 20% OFF Today</span>
 
-        <p class="tagline">
-            Experience authentic taste, premium quality food,
-            and unforgettable dining moments.
-        </p>
+            <h2>Welcome to Our Restaurant</h2>
 
-        <div class="rating">
-            ⭐⭐⭐⭐⭐
-            <span>4.9 / 5 Customer Rating</span>
-        </div>
+            <p class="tagline">
+                Experience authentic taste, premium quality food,
+                and unforgettable dining moments.
+            </p>
 
-        <div class="hero-buttons">
+            <div class="rating">
+                ⭐⭐⭐⭐⭐
+                <span>4.9 / 5 Customer Rating</span>
+            </div>
 
-            <a href="login.html">
-                <button class="primary-btn">Order Now</button>
-            </a>
+            <div class="hero-buttons">
 
-            <!-- View Menu only after login -->
-            <button class="secondary-btn" onclick="openMenu()">
-                View Menu
-            </button>
+                <button class="primary-btn" onclick="orderNow()" aria-label="Order food now">
+                    Order Now
+                </button>
 
-        </div>
+                <button class="secondary-btn" onclick="openMenu()" aria-label="View menu after login">
+                    View Menu
+                </button>
 
-        <p class="delivery-text">
-            🚚 Fast Delivery • Hygienic Kitchen • Fresh Ingredients
-        </p>
+            </div>
 
-    </div>
+            <p class="delivery-text">
+                🚚 Fast Delivery • Hygienic Kitchen • Fresh Ingredients
+            </p>
+
+        </section>
+
+    </main>
 
     <footer>
-        <p>© 2026 Anapurneshwari Restaurant Management System</p>
+        <p>© 2026 Sri Anapurneshwari Restaurant. All Rights Reserved.</p>
     </footer>
 
-   <script>
+    <script>
 
-function openMenu(){
+        function isLoggedIn() {
+            return localStorage.getItem("login") === "true";
+        }
 
-    if(localStorage.getItem("login") === "true"){
+        function openMenu() {
 
-        window.location.href = "menu.html";
+            if (isLoggedIn()) {
 
-    }else{
+                window.location.href = "menu.html";
 
-        alert("Please Login First");
+            } else {
 
-        window.location.href = "login.html";
-    }
+                alert("Please Login First");
+                window.location.href = "login.html";
+            }
 
-}
+        }
 
-</script>
+        function orderNow() {
+
+            if (isLoggedIn()) {
+
+                window.location.href = "menu.html";
+
+            } else {
+
+                alert("Please Login First");
+                window.location.href = "login.html";
+            }
+
+        }
+
+    </script>
+
 </body>
 
 </html>

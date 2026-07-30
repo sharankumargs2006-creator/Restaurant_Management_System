@@ -15,24 +15,28 @@
 
     <p><strong>Restaurant:</strong> Sri Anapurneshwari Restaurant</p>
 
+    <p><strong>Customer Name:</strong> <span id="custName"></span></p>
+
     <hr>
 
     <table id="billTable">
 
         <tr>
             <th>Food Item</th>
+            <th>Qty</th>
             <th>Price</th>
+            <th>Total</th>
         </tr>
 
     </table>
 
-    <h3 id="totalBill">Total: ₹0</h3>
+    <h3 id="totalBill">Grand Total: ₹0</h3>
 
     <hr>
 
     <p>Thank you for visiting our restaurant 🍽️</p>
 
-    <button onclick="printBill()">🖨️ Print / Save PDF</button>
+    <button onclick="window.print()">🖨️ Print / Save PDF</button>
 
     <button onclick="goHome()">🏠 Back to Home</button>
 
@@ -40,30 +44,37 @@
 
 <script>
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let customerName = localStorage.getItem("customerName") || "Guest";
+
+document.getElementById("custName").innerText = customerName;
+
+let cart = JSON.parse(localStorage.getItem("finalCart")) || [];
 
 let table = document.getElementById("billTable");
-let total = 0;
+
+let grandTotal = 0;
 
 cart.forEach(item => {
+
+    let itemTotal = item.price * item.quantity;
 
     let row = table.insertRow();
 
     row.insertCell(0).innerText = item.name;
-    row.insertCell(1).innerText = "₹" + item.price;
+    row.insertCell(1).innerText = item.quantity;
+    row.insertCell(2).innerText = "₹" + item.price;
+    row.insertCell(3).innerText = "₹" + itemTotal;
 
-    total += item.price;
+    grandTotal += itemTotal;
 });
 
-document.getElementById("totalBill").innerText = "Total: ₹" + total;
-
-function printBill(){
-    window.print();
-}
+document.getElementById("totalBill").innerText =
+    "Grand Total: ₹" + grandTotal;
 
 function goHome(){
 
     localStorage.removeItem("cart");
+    localStorage.removeItem("finalCart");
 
     window.location.href = "index.html";
 }

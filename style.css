@@ -608,4 +608,19 @@ footer{
     color:#eee;
     margin-top:10px;
 }
+/* Food Images */
+
+.food-img{
+    width:100px;
+    height:80px;
+    object-fit:cover;
+    border-radius:10px;
+    border:2px solid #ffb703;
+    box-shadow:0 4px 10px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.food-img:hover{
+    transform:scale(1.08);
+}
 
